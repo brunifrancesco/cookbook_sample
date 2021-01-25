@@ -16,6 +16,11 @@
 
     <br><br><br><br><br><br>
 
+    {% for recipe in recipes %}
+        <b>{{ recipe.name }} -> {{ recipe.ingredients }}</b>
+    <br>
+    {% endfor %}
+
 {% endblock content %}
 
 
