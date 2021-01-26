@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 
+{% block title %}
+<title>Index page</title>
+{% endblock title %}
 
 {% block header %}
-    {% include 'header.html' %}
+{% include 'header.html' %}
 {% endblock header %}
 
 
 {% block content %}
 
-
-<br><br><br><br>
-<body>
-    <p>Hello world!</p>
-<p>Today is {{ current_date }} </p>
-
-    <br><br><br><br><br><br>
-
-    {% for recipe in recipes %}
-        <b>{{ recipe.name }} -> {{ recipe.ingredients }}</b>
-    <br>
-    {% endfor %}
+{% for recipe in recipes %}
+<div class="card small">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="https://fakeimg.pl/1050x300/82b1ff/">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{ recipe.name }}<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">Go to the recipe</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{ recipe.name }}<i class="material-icons right">close</i></span>
+      <p>{{ recipe.ingredients }}</p>
+    </div>
+  </div>
+<br>
+{% endfor %}
 
 {% endblock content %}
 
