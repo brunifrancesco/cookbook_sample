@@ -90,8 +90,11 @@ if not PRODUCTION:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/data/db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'cookbook',
+            'USER': 'cookbook',
+            'PASSWORD': 'cookbook',
+            'HOST': 'db'
         }
     }
 
