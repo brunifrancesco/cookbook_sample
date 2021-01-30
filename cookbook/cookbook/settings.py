@@ -20,13 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*ii!rs(yf)u)zianl5h1le-+em0f3q^-_x)!sx3%^h9ayak3^q'
+import os
+SECRET_KEY = os.environ.get('SECRET_KEY', '*ii!rs(yf)u)zianl5h1le-+em0f3q^-_x)!sx3%^h9ayak3^q')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+PRODUCTION = os.environ.get('PRODUCTION', False)
 
-ALLOWED_HOSTS = []
+if not PRODUCTION:
+    DEBUG = True
 
+if PRODUCTION:
+    ALLOWED_HOSTS = ['localhost', 'cicciopasticcio.it']
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -74,13 +80,20 @@ WSGI_APPLICATION = 'cookbook.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if not PRODUCTION:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': '/data/db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
