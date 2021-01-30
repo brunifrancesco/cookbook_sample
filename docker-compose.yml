@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    command: bash -c "python manage.py migrate & daphne -b 0.0.0.0 -p 8000 cookbook.asgi:application"
+    volumes:
+      - ./production_data/sqlite:/data
+    ports:
+      - 6544:8000
+    environment:
+      - "PRODUCTION=True"
