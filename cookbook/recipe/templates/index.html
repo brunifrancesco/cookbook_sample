@@ -18,7 +18,12 @@
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">{{ recipe.name }}<i class="material-icons right">more_vert</i></span>
-      <p><a href="{% url 'detail' recipe.id %}">Go to the recipe</a></p>
+
+        {% if request.user.username %}<p>
+          <a href="{% url 'detail' recipe.id %}">Go to the recipe</a>
+        <p>Thanks to {{ recipe.user.username }}</p>
+      </p>
+        {% endif %}
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{ recipe.name }}<i class="material-icons right">close</i></span>
