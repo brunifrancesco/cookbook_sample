@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Index page</title>
+{% endblock title %}
+
+{% block header %}
+    <h1>Log in dude!</h1>
+{% endblock header %}
+
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+     <button type="submit"> Log in</button>
+</form>
+
+<br>
+{% endblock content %}
+
+
+{% block footer %}
+
+{% include 'footer.html' %}
+
+{% endblock footer %}

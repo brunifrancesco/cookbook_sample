@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipe.apps.RecipeConfig',
+    'user.apps.UserConfig'
 ]
 
 MIDDLEWARE = [
@@ -90,8 +91,11 @@ if not PRODUCTION:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/data/db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'cookbook',
+            'USER': 'cookbook',
+            'PASSWORD': 'cookbook',
+            'HOST': 'db'
         }
     }
 
@@ -136,3 +140,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+LOGIN_REDIRECT_URL = "/"
