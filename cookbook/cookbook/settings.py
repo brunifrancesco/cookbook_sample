@@ -142,3 +142,8 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = "/"
+
+if PRODUCTION:
+    STATIC_ROOT = "/static"
+else:
+    STATIC_ROOT = "./static_files"
