@@ -21,3 +21,5 @@ urlpatterns = [
     path('', include('user.urls')),
     path('admin/', admin.site.urls),
 ]
+admin.site.site_header = "Cookbook"
+admin.site.index_title= 'Cookbook title'
