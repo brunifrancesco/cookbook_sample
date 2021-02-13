@@ -6,3 +6,4 @@ class Recipe(models.Model):
     ingredients = models.TextField(default="", blank=False)
     method = models.TextField(default="", blank=False)
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
+    image_url = models.TextField(null=True)
