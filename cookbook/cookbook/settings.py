@@ -55,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cookbook.LogMiddleware.LogMiddleware',
+    'cookbook.BlockExternalIPAddressMiddleware.BlockExternalIPAddress'
 ]
 
 ROOT_URLCONF = 'cookbook.urls'
@@ -147,3 +149,29 @@ if PRODUCTION:
     STATIC_ROOT = "/static"
 else:
     STATIC_ROOT = "./static_files"
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'aaaa': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'requests.log',
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'request': {
+            'handlers': ['aaaa'],
+            'level': 'INFO'
+        }
+    }
+}
