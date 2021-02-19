@@ -6,3 +6,4 @@ venv
 cookbook_neew/
 production_data/**
 cookbook/static_files
+*.log
