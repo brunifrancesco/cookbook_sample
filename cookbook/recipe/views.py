@@ -12,6 +12,7 @@ from django.shortcuts import render
 #     return HttpResponse("<html><body><b>Hello, <b/> world<body></hml>")
 from recipe.forms import NewRecipeForm
 from recipe.models import Recipe
+from cookbook.celery import  debug_task
 
 @login_required(login_url="/users/login")
 def index(request):
